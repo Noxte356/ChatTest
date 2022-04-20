@@ -9,25 +9,29 @@ public class Server {
         System.out.println("Server started");
         while (true) {
             Socket clientSocket = serverSocket.accept();
-            String[] regex = new String[1];
+            String[] regex = new String[5];
             OutputStreamWriter writer = new OutputStreamWriter(clientSocket.getOutputStream());
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             clientSocket.getInputStream()));
+
             String request = reader.readLine();
             regex = request.split(": ");
             if (regex[0].equals("Send")) {
 //                System.out.println(request);
                 messageHistory.add(regex[1]);
-                System.out.println(messageHistory.get(0));
+//                System.out.println(messageHistory.get(0));
             }
-             if (regex[0].equals("Get")) {
+             if (request.equals("Get")) {
                  writer.write(messageHistory.size());
+                 writer.flush();
                  for (int i = 0; i < messageHistory.size(); i++) {
                      writer.write(messageHistory.get(i) + "\n");
+                     writer.flush();
+
                  }
              }
-             if (!(regex[0].equals("Send")) && !(regex[0].equals("Get"))){
+             if (!(regex[0].equals("Send")) && !(request.equals("Get"))){
                  System.out.println("Неизвестный запрос");
              }
 //            serverSocket.close();

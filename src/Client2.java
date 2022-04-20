@@ -11,18 +11,17 @@ public class Client2 {
                 new InputStreamReader(
                         clientSocket.getInputStream()));
 
-        writer.write("Get");
+        writer.write("Get" + "\n");
         writer.flush();
 
-        int numb = reader.read();
-        System.out.println(numb);
-        for (int i = 0; i < numb; i++) {
-            String string = reader.readLine();
+        int chatSize = reader.read();
+        for (int i = 0; i < chatSize; i++) {
+            String string = reader.readLine() + "\n";
             System.out.println(string);
         }
 
-        reader.close();
         writer.close();
+        reader.close();
         clientSocket.close();
 
     }
