@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
+        Chat chat = new Chat();
+        chat.start();
         try {
             Scanner scan = new Scanner(System.in);
             RequestSender requestSender = new RequestSender();

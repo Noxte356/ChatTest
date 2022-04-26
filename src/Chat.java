@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Chat {
-    public static void main(String[] args) {
+public class Chat extends Thread {
+    public void run(){
         List<String> oldMessages = new ArrayList<>();
         RequestSender requestSender = new RequestSender();
         while (true) {
