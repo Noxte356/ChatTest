@@ -28,7 +28,7 @@ public class Server {
             if (request.equals(OUT_MESSAGE_COMMAND)) {
                 messageSender.sendAllMessagesToChat(clientSocket, messageHistory);
             }
-            if (!(regex[0].equals(SAVE_MESSAGE_COMMAND)) && !(request.equals("Get"))) {
+            if (!(regex[0].equals(SAVE_MESSAGE_COMMAND)) && !(request.equals(OUT_MESSAGE_COMMAND))) {
                 System.out.println("Неизвестный запрос");
             }
 //            serverSocket.close();
